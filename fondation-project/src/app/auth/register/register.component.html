@@ -1,1 +1,77 @@
-<p>register works!</p>
+<section id="registerPage">
+    <form [formGroup]="form" class="registerForm" (ngSubmit)="registerHandler()">
+        <h2>Register</h2>
+        <div>
+            <label for="email">Email:<span><i class="fas fa-envelope"></i></span></label>
+            <input type="email" formControlName="email" id="email" placeholder="username.test24@gmail.com">
+        </div>
+        <ng-container *ngIf="form.get('email')?.touched">
+            <p class="error" *ngIf="form.get('email')?.errors?.['required']">
+                Email is required!
+            </p>
+            <p class="error" *ngIf="form.get('email')?.errors?.['email']">
+                Email is not valid!
+            </p>
+        </ng-container>
+        <div>
+            <label for="username">Username:<span><i class="fas fa-user"></i></span></label>
+            <input class="input-error" type="text" formControlName="username" id="username" placeholder="username45">
+        </div>
+        <ng-container *ngIf="form.get('username')?.touched">
+            <p *ngIf="form.get('username')?.errors?.['required']" class="error">
+                Username is required!
+            </p>
+            <p *ngIf="form.get('username')?.errors?.['minlength']" class="error">
+                Username should be longer than 5 characters!
+            </p>
+        </ng-container>
+
+        <div class="field field-icon">
+            <label for="tel">Phone number:<span><i class="fas fa-phone"></i></span></label>
+            <input type="text" formControlName="tel" id="tel" placeholder="885 888 888">
+        </div>
+        <ng-container *ngIf="form.get('tel')?.touched">
+            <p class="error" *ngIf="form.get('tel')?.errors?.['required']">
+                Phone number is required!
+            </p>
+            <p class="error" *ngIf="form.get('tel')?.errors?.['pattern']">
+                Incorect phone number!
+            </p>
+        </ng-container>
+
+        <ng-container formGroupName="pass">
+            <div>
+                <label for="password">Password:<span><i class="fas fa-lock"></i></span></label>
+                <input type="password" formControlName="password" id="password" placeholder="******">
+            </div>
+            <ng-container *ngIf="form.get('pass')?.get('password')?.touched">
+                <p class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['required']">
+                    Password is required!
+                </p>
+                <p class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['minlength']">
+                    Password must be at least 5 characters!
+                </p>
+            </ng-container>
+
+            <div>
+                <label for="rePassword">Repeat password:<span><i class="fas fa-lock"></i></span></label>
+                <input type="password" formControlName="rePassword" id="rePassword" placeholder="******">
+            </div>
+            <ng-container *ngIf="form.get('pass')?.get('rePassword')?.touched">
+                <p *ngIf="form.get('pass')?.errors?.['samePassValidator'] && form.get('pass')?.get('rePassword')?.touched"
+                    class="error">Repeat password does not match
+                    password!</p>
+                <p class="error" *ngIf="form.get('pass')?.get('rePassword')?.errors?.['required']">
+                    Repeat password is required!
+                </p>
+            </ng-container>
+
+
+        </ng-container>
+        <button class="btn" [disabled]="form.invalid">Register</button>
+
+        <p class="field">
+            <span>If you have profile please <a routerLink="/auth/login">Sign-in</a></span>
+        </p>
+    </form>
+</section>

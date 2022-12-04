@@ -1,1 +1,36 @@
-<p>login works!</p>
+<section id="loginPage">
+    <form [formGroup]="form" class="loginForm" (ngSubmit)="loginHandler()">
+        <h2>Login</h2>
+        <div>
+            <label for="email">Email:<span><i class="fas fa-envelope"></i></span></label>
+            <input type="email" formControlName="email" id="email" placeholder="username.test24@gmail.com">
+        </div>
+        <ng-container *ngIf="form.get('email')?.touched">
+            <p class="error" *ngIf="form.get('email')?.errors?.['required']">
+                Email is required!
+            </p>
+            <p class="error" *ngIf="form.get('email')?.errors?.['email']">
+                Email is not valid!
+            </p>
+        </ng-container>
+
+        <div>
+            <label for="password">Password:<span><i class="fas fa-lock"></i></span></label>
+                <input type="password" formControlName="password" id="password" placeholder="******">
+        </div>
+        <ng-container *ngIf="form.get('password')?.touched">
+            <p class="error" *ngIf="form.get('password')?.errors?.['required']">
+                Password is required!
+            </p>
+            <p class="error" *ngIf="form.get('password')?.errors?.['minlength']">
+                Password must be at least 5 characters!
+            </p>
+        </ng-container>
+        <button class="btn" [disabled]="form.invalid">Login</button>
+
+        <p class="field">
+            <span>If you don't have profile please <a routerLink="/auth/register">Sign-Up</a></span>
+        </p>
+    </form>
+</section>
+<!-- <div>Hello</div> -->
