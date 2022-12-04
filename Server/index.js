@@ -8,7 +8,7 @@ const trimBody = require('./middlewares/trimBody');
 const session = require('./middlewares/session');
 
 
-const connectionString = 'mongodb://localhost:27017/food-donation';
+const connectionString = 'mongodb://127.0.0.1:27017/food-donation';
 
 start();
 
