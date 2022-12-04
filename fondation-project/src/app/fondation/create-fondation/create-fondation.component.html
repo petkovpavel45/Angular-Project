@@ -1,0 +1,29 @@
+<section id="createPage">
+    <form class="createForm">
+        <div>
+            <h2>Create Fondation</h2>
+            <div class="title">
+                <label for="title">Title:</label>
+                <input name="title" id="title" type="text">
+            </div>
+            <div class="description">
+                <label for="description">Description:</label>
+                <input name="description" id="description" type="text">
+            </div>
+            <div class="location">
+                <label for="description">Location:</label>
+                <input type="text" name="location" list="location">
+                <datalist name="location" id="location" class="location" formControlName="location">
+                    <option value="Sofia">
+                    <option value="Varna">
+                    <option value="Plovdiv">
+                </datalist>
+            </div>
+            <div class="image">
+                <label for="image">Image:</label>
+                <input name="image" id="image" type="text">
+            </div>
+            <button class="btn" type="submit">Create Fondation</button>
+        </div>
+    </form>
+</section>

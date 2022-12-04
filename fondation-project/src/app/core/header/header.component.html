@@ -1,1 +1,24 @@
-<p>header works!</p>
+<header>
+    <nav>
+        <section class="logo">
+            <img src="../../../assets/cookingLogo.png" alt="logo">
+        </section>
+        <ul>
+            <!--Users and Guest-->
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/fondations/recent">All Fondation</a></li>
+            <!--Only Guest-->
+            <ng-template #loggedOutTemplate>
+                <li><a href="/auth/login">Login</a></li>
+                <li><a routerLink="/auth/register">Register</a></li>
+            </ng-template>
+            <!--Only Users-->
+            <ng-template #loggedTemplate>
+                <li *ngIf="isLoggedIn"><a routerLink="/fondations/new-fondation">Create Fondation</a></li>
+                <li *ngIf="isLoggedIn"><a routerLink="/auth/profile">My Profile</a></li>
+                <li *ngIf="isLoggedIn"><a routerLink="/auth/logout">Logout</a></li>
+            </ng-template>
+            <ng-container *ngTemplateOutlet="isLoggedIn ? loggedTemplate : loggedOutTemplate"></ng-container>
+        </ul>
+    </nav>
+</header>
