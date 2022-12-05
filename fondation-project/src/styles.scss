@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0px;
+    margin: 0px;
+    background-color: #d1aebe;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+#content {
+    margin: 3rem auto;
+    width: 92%;
+    min-height: calc(100vh - 13.4rem);
+}
