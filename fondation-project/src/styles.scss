@@ -4,11 +4,15 @@ html {
 }
 
 body {
+    background-image: url('./assets/Artboard\ 1.png');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: initial;
+    background-position-y: center;
+
     padding: 0px;
     margin: 0px;
-    background-color: #e3dbce;
+    // background-color: #e3dbce;
 }
 
 h1,
