@@ -26,6 +26,7 @@ authController.post(
       const token = await register(
         req.body.email,
         req.body.username,
+        req.body.tel,
         req.body.password
       );
       res.json(token);

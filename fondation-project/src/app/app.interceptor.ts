@@ -7,7 +7,8 @@ import {
 } from '@angular/common/http';
 import { Injectable, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import {environment} from '../environments/environment';
+const apiURL = environment.apiURL
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
   constructor() {}
@@ -16,6 +17,10 @@ export class AppInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    console.log(req.url.startsWith('/'));
+    if (req.url.startsWith('/')) {
+      req = req.clone({url: req.url.replace('/', apiURL)})
+    }
     return next.handle(req);
   }
 }
