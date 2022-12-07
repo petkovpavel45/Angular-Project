@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { IFondation } from './shared/interfaces/fondation';
 
 const apiURL = environment.apiURL;
 @Injectable({
@@ -10,7 +11,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
   // loadFondations() {
-  //   return this.httpClient.get<IFondation[]>(`${apiURL}/fondations`);
+  //   return this.httpClient.get<IFondation[]>(`${apiURL}fondations`);
   // }
 
   // loadFondation(id: number) {
