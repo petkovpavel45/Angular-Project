@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { samePassValidator } from 'src/app/shared/validators';
 import { AuthService } from '../auth.service';
 
@@ -22,13 +23,16 @@ export class RegisterComponent {
     })
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   registerHandler() {
     if (this.form.invalid) {return;}
     const {email, username, tel, pass: {password} = {}} = this.form.value;
-    // console.log(email, username, tel, password);
     this.authService.register(email!, username!, tel!, password!)
-      .subscribe(res => console.log(res))
+      .subscribe(user => {
+        this.authService.user = user;
+
+        this.router.navigate(['/fondation/recent'])
+      })
   }
 }
