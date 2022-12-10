@@ -8,11 +8,10 @@ form>h2 {
     position: relative;
     top: 70px;
     width: 350px;
-    // height: 450px;
     border-radius: 20px;
     padding: 40px;
     box-sizing: border-box;
-    background: #cf370991;
+    background: #e7dac7;
     box-shadow: 10px 10px 25px #464a4e, -10px -10px 25px #464a4e;
     justify-content: center;
   
@@ -24,14 +23,15 @@ form>h2 {
   
   }
   
-  .inputs {
+  .inputs, textarea {
     text-align: left;
     margin-top: 30px;
   }
   
   label,
   input,
-  button {
+  button,
+  textarea {
     display: block;
     width: 100%;
     padding: 0;
@@ -53,7 +53,7 @@ form>h2 {
     color: gray;
   }
   
-  input {
+  input, textarea {
     background: #ecf0f3;
     padding: 10px;
     padding-left: 20px;
@@ -62,22 +62,27 @@ form>h2 {
     border-radius: 50px;
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
   }
-  
+  // textarea { height: auto; }
   button {
     margin-top: 20px;
-    background: #f34515;
+    background: #E41C77;
     height: 40px;
     border-radius: 20px;
     cursor: pointer;
     font-weight: 900;
     box-shadow: 6px 6px 20px #464a4e62, -6px -6px 20px #464a4e62;
     transition: 0.5s;
+    color: white;
   }
   
   button:hover {
     box-shadow: none;
   }
-  
+  textarea {
+    resize: none;
+    width: 268px;
+    height: 78px;
+  }
   p.error {
     text-align: left;
     border-radius: 0.3em;
@@ -87,4 +92,14 @@ form>h2 {
   
   input.error {
     border-left-color: red;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
   }

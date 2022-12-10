@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from "@angular/router";
+import { CreateFondationComponent } from "./create-fondation/create-fondation.component";
 import { MainComponent } from "./main/main.component";
 
 const routes: Routes = [
@@ -6,10 +7,10 @@ const routes: Routes = [
     path: 'recent',
     component: MainComponent
   },
-  // {
-  //   path: 'new',
-  //   component: NewThemeComponent
-  // },
+  {
+    path: 'new-fondation',
+    component: CreateFondationComponent
+  },
   // {
   //   path: 'detail/:id',
   //   resolve: {

@@ -10,6 +10,7 @@ import { appInterceptorProvider } from './app.interceptor';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { API_ERROR } from './shared/constants';
 import { BehaviorSubject } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BehaviorSubject } from 'rxjs';
     CoreModule,
     HttpClientModule,
     SharedModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     appInterceptorProvider,
