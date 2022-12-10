@@ -10,9 +10,9 @@ const apiURL = environment.apiURL;
 export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
-  // loadFondations() {
-  //   return this.httpClient.get<IFondation[]>(`${apiURL}fondations`);
-  // }
+  loadFondations() {
+    return this.httpClient.get<IFondation[]>(`${apiURL}/fondations`);
+  }
 
   // loadFondation(id: number) {
   //   return this.httpClient.get<IFondation>(`${apiURL}/fondations/${id}`);

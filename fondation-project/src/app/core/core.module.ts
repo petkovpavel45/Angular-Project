@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HomeComponent,
     HeaderComponent,
     PageNotFoundComponent,
+    ErrorComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   exports: [
     HomeComponent,
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ErrorComponent
   ]
 })
 export class CoreModule { }

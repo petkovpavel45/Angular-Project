@@ -4,6 +4,7 @@ function hasUser() {
             next();
         } else {
             res.status(401).json({ message: 'Please log in' });
+            res.end();
         }
     };
 }
@@ -12,6 +13,7 @@ function isGuest() {
     return (req, res, next) => {
         if (req.user) {
             res.status(400).json({ message: 'You are already logged in' });
+            res.end();
         } else {
             next();
         }

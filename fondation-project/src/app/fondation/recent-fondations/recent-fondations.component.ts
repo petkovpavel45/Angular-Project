@@ -14,14 +14,14 @@ export class RecentFondationsComponent {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    // this.apiService.loadFondations().subscribe({
-    //   next: (value) => {
-    //     this.fondations = value;
-    //   },
-    //   error: (err) => {
-    //     this.errorFetching = true;
-    //     console.error(err);
-    //   },
-    // });
+    this.apiService.loadFondations().subscribe({
+      next: (value) => {
+        this.fondations = value;
+      },
+      error: (err) => {
+        this.errorFetching = true;
+        console.error(err);
+      },
+    });
   }
 }

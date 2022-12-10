@@ -1,11 +1,11 @@
 const dataController = require('express').Router();
 
-const { hasUser } = require('../middlewares/guards');
+// const { hasUser } = require('../middlewares/guards');
 const { getAll, create, getById, update, deleteById, getByUserId } = require('../services/itemService');
-const { parseError } = require('../util/parser');
+const { parseError } = require('../utils/parser');
 
 
-dataController.get('/', async (req, res) => {
+async function getAllItems(req, res) {
     let items = [];
     if (req.query.where) {
         const userId = JSON.parse(req.query.where.split('=')[1]);
@@ -14,9 +14,9 @@ dataController.get('/', async (req, res) => {
         items = await getAll();
     }
     res.json(items);
-});
+};
 
-dataController.post('/', hasUser(), async (req, res) => {
+async function createFondation(req, res) {
     try {
         const data = Object.assign({ _ownerId: req.user._id }, req.body);
         const item = await create(data);
@@ -25,14 +25,14 @@ dataController.post('/', hasUser(), async (req, res) => {
         const message = parseError(err);
         res.status(400).json({ message });
     }
-});
+};
 
-dataController.get('/:id', async (req, res, next) => {
+async function getFondation (req, res, next) {
     const item = await getById(req.params.id);
     res.json(item);
-});
+};
 
-dataController.put('/:id', hasUser(), async (req, res, next) => {
+async function updateFondation (req, res, next) {
     const item = await getById(req.params.id);
     if (req.user._id != item._ownerId) {
         return res.status(403).json({ message: 'You cannot modify this record' });
@@ -45,9 +45,9 @@ dataController.put('/:id', hasUser(), async (req, res, next) => {
         const message = parseError(err);
         res.status(400).json({ message });
     }
-});
+};
 
-dataController.delete('/:id', hasUser(), async (req, res) => {
+async function deleteFondation (req, res) {
     const item = await getById(req.params.id);
     if (req.user._id != item._ownerId) {
         return res.status(403).json({ message: 'You cannot modify this record' });
@@ -60,6 +60,12 @@ dataController.delete('/:id', hasUser(), async (req, res) => {
         const message = parseError(err);
         res.status(400).json({ message });
     }
-});
+};
 
-module.exports = dataController;
+module.exports = {
+    getAllItems,
+    createFondation,
+    getFondation,
+    updateFondation,
+    deleteFondation
+}
