@@ -83,8 +83,8 @@ export class AuthService implements OnDestroy {
       );
   }
 
-  setProfile(username: string, email: string, tel: string) {
-    return this.http.put<IUser>('/api/users/profile', { username, email, tel })
+  setProfile(email: string, username: string, tel: string) {
+    return this.http.put<IUser>('/api/users/profile', { email, username, tel })
       .pipe(tap(user => this.user$$.next(user)));
   }
 
