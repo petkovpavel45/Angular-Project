@@ -1,5 +1,5 @@
 <div class="profile">
-    <form [formGroup]="form">
+    <form [formGroup]="form" (ngSubmit)="saveProfile()">
       <img src="/assets/profile.png" alt="default user">
   
       <h3>User Info:</h3>

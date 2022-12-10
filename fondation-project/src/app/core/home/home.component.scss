@@ -18,9 +18,9 @@
 
 .welcome-content-text h2 {
     font-size: 30px;
-    margin: 0px;
+    margin: 1px;
     color: #1f8af4;
-    font-weight: 200;
+    font-weight: 400;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -30,6 +30,7 @@
     color: black;
     font-weight: 400;
     font-family: Arial, Helvetica, sans-serif;
+    line-height: 1;
 
 }
 
@@ -39,15 +40,4 @@
 
 h1.bold-welcome {
     font-weight: 800;
-}
-
-.welcome-content-image {
-    width: 600px;
-    position: relative;
-    top: 64px;
-    right: 40px;
-}
-
-.welcome-content-image img {
-    width: 100%;
 }
