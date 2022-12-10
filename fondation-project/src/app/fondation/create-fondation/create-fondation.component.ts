@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FondationService } from '../fondation.service';
+
 
 @Component({
   selector: 'app-create-fondation',
@@ -7,17 +10,25 @@ import { FormBuilder, NgForm, Validators } from '@angular/forms';
   styleUrls: ['./create-fondation.component.scss']
 })
 export class CreateFondationComponent {
+  locations: string[] = ['Sofia', 'Varna', 'Plovdiv'];
   
   form = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
     description: ['', [Validators.required, Validators.minLength(10)]],
     location: ['', [Validators.required]],
+    img: ['', [Validators.required]],
+
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private fondationService: FondationService, private router: Router) { }
 
-  createFondationHandler(form: NgForm): void {
-    if (form.invalid) { return; }
-    console.log(form.value);
+  createFondationHandler() {
+    if (this.form.invalid) {return;}
+    const {title, description, location, img} = this.form.value;
+    this.fondationService.createFondation(title!, description!, location!, img!)
+       .subscribe(() => {
+        this.router.navigate(['/fondation/recent'])
+       })
   }
+
 }

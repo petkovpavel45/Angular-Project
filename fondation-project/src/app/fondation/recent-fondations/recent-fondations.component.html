@@ -13,8 +13,8 @@
                         <a class="btn" href="#">Details</a>
                     </div>
                 </div>
-                <!--If there is no pets in dashboard-->
-                <div>
+
+                <div *ngIf="fondations?.length === 0" id="no-fondations">
                     <p class="no-fondations">No fondations in dashboard</p>
                 </div>
             </div>
