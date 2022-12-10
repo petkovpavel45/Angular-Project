@@ -25,6 +25,11 @@ async function register(email, username, tel, password) {
   return createToken(user);
 }
 
+async function getProfileInfo(userId) {
+  const user = await User.findOne({userId});
+  return createToken(user);
+}
+
 async function login(email, password) {
   const user = await User.findOne({ email }).collation({
     locale: "en",
@@ -57,7 +62,7 @@ function createToken(user) {
     _id: user._id,
     email: user.email,
     username: user.username,
-    accessToken: jwt.sign(payload, secret),
+    accessToken: jwt.sign(payload, secret, {expiresIn: '2 days'}),
   };
 }
 
@@ -74,4 +79,5 @@ module.exports = {
   login,
   logout,
   parseToken,
+  getProfileInfo
 };

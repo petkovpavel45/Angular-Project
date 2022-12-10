@@ -12,8 +12,8 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent {
 
   form = this.fb.group({
-    username: ['', [Validators.required, Validators.minLength(5)]],
     email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required, Validators.minLength(5)]],
     tel: ['', [Validators.required, Validators.pattern('^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')]],
     pass: this.fb.group({
       password: ['', [Validators.required, Validators.minLength(5)]],
@@ -30,8 +30,6 @@ export class RegisterComponent {
     const {email, username, tel, pass: {password} = {}} = this.form.value;
     this.authService.register(email!, username!, tel!, password!)
       .subscribe(user => {
-        this.authService.user = user;
-
         this.router.navigate(['/fondation/recent'])
       })
   }
