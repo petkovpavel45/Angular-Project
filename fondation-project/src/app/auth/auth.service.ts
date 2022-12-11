@@ -1,33 +1,3 @@
-// import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { IUser } from '../shared/interfaces';
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class AuthService {
-//   isLoggedIn = false;
-//   isAuthenticated(): boolean {
-//     return this.isLoggedIn;
-//   }
-
-//   constructor(private http: HttpClient) {}
-
-//   register(email: string, username: string, tel: string, password: string) {
-//     return this.http.post<IUser>('/users/register', {
-//       email,
-//       username,
-//       tel,
-//       password,
-//     });
-//   }
-//   login(email: string, password: string) {
-//     return this.http.post<any>('/users/login', { email, password });
-//   }
-//   logout() {
-//     return this.http.get<void>('/users/logout');
-//   }
-// }
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, catchError, filter, of, Subscription, tap, throwError } from 'rxjs';

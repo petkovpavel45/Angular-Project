@@ -10,7 +10,7 @@
                     <h3 class="description">{{fondation.description}}</h3>
                     <h3 class="location">{{fondation.location}}</h3>
                     <div class="action">
-                        <a class="btn" href="#">Details</a>
+                        <a class="btn" [routerLink]="['/fondation', 'detail', fondation._id]">Details</a>
                     </div>
                 </div>
 

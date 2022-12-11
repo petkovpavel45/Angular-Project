@@ -8,6 +8,7 @@ import { CreateFondationComponent } from './create-fondation/create-fondation.co
 import { FondationRoutingModule } from './fondation-routing.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
+import { FondationDetailComponent } from './fondation-detail/fondation-detail.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
     RecentFondationsComponent,
     CreateFondationComponent,
     MainComponent,
+    FondationDetailComponent,
   ],
   imports: [
     CommonModule,
