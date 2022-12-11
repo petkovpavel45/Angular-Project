@@ -28,18 +28,18 @@ async function createFondation(req, res) {
 };
 
 async function getFondation (req, res, next) {
-    const item = await getById(req.params.id);
+    const item = await getById(req.params.fondationId);
     res.json(item);
 };
 
 async function updateFondation (req, res, next) {
-    const item = await getById(req.params.id);
+    const item = await getById(req.params.fondationId);
     if (req.user._id != item._ownerId) {
         return res.status(403).json({ message: 'You cannot modify this record' });
     }
 
     try {
-        const result = await update(req.params.id, req.body);
+        const result = await update(req.params.fondationId, req.body);
         res.json(result);
     } catch (err) {
         const message = parseError(err);
@@ -48,13 +48,13 @@ async function updateFondation (req, res, next) {
 };
 
 async function deleteFondation (req, res) {
-    const item = await getById(req.params.id);
+    const item = await getById(req.params.fondationId);
     if (req.user._id != item._ownerId) {
         return res.status(403).json({ message: 'You cannot modify this record' });
     }
 
     try {
-        await deleteById(req.params.id);
+        await deleteById(req.params.fondationId);
         res.status(204).end();
     } catch (err) {
         const message = parseError(err);

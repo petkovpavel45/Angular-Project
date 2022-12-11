@@ -14,9 +14,10 @@ export class ApiService {
     return this.httpClient.get<IFondation[]>(`${apiURL}/fondations`);
   }
 
-  // loadFondation(id: number) {
-  //   return this.httpClient.get<IFondation>(`${apiURL}/fondations/${id}`);
-  // }
+  loadFondation(id: number) {
+    return this.httpClient.get<IFondation>(`${apiURL}/fondations/${id}`);
+  }
+
 
   // loadPosts(limit?: number) {
   //   return this.httpClient.get<IPost[]>(
