@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -23,7 +24,6 @@ export class RegisterComponent {
     })
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   registerHandler() {
     if (this.form.invalid) {return;}

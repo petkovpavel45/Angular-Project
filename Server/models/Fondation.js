@@ -5,7 +5,7 @@ const fondationSchema = new Schema({
     description: { type: String, required: true, minlength: [10, 'Description must be at least 10 characters long'] },
     location: {type: String, required: true},
     img: { type: String, required: [true, 'Image URL is required'] },
-    userId: { type: ObjectId, ref: 'User'}
+    _ownerId: { type: ObjectId, ref: 'User', required: true }
 },  { timestamps: { createdAt: 'created_at' } });
 
 const Fondation = model('Fondation', fondationSchema);

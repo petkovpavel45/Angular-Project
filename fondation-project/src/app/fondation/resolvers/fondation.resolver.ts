@@ -18,5 +18,4 @@ export class FondationResolver implements Resolve<IFondation | null> {
     return this.apiService.loadFondation(fondationId);
   }
 
-
 }
