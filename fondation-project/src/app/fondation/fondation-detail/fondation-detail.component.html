@@ -1,10 +1,10 @@
 <section id="detailsPage">
     <div class="details">
-        <div class="animalPic">
+        <div class="fondationPic">
             <img src="{{fondation?.img}}" alt="not">
         </div>
         <div>
-            <div class="animalInfo">
+            <div class="fondationInfo">
                 <h1>Title: {{fondation?.title}}</h1>
                 <h3>Description: {{fondation?.description}}</h3>
                 <h4>Location: {{fondation?.location}}</h4>
@@ -13,7 +13,7 @@
             <!-- if there is no registered user, do not display div-->
             <div class="actionBtn">
                 <!-- Only for registered user and creator of the pets-->
-                <a href="#" class="edit">Edit</a>
+                <a [routerLink]="['/fondation', 'edit', fondation?._id]" class="edit">Edit</a>
                 <a href="#" class="remove">Delete</a>
                 <!--(Bonus Part) Only for no creator and user-->
                 <a href="#" class="donate">Donate</a>

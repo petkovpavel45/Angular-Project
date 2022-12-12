@@ -1,0 +1,59 @@
+<section id="editPage">
+    <form [formGroup]="form" class="editForm" (ngSubmit)="editHandler()">
+        <img src="{{fondationData.img}}">
+        <div>
+            <h2>Edit Fondation</h2>
+            <div class="title">
+                <label for="title">Title:</label>
+                <input name="title" formControlName="title" id="title" type="text">
+            </div>
+            <ng-container *ngIf="form.get('title')?.touched">
+                <p class="error" *ngIf="form.get('title')?.errors?.['required']">
+                    Title is required!
+                </p>
+                <p class="error" *ngIf="form.get('title')?.errors?.['minlenght']">
+                    Title should be minimum than 3 characters!
+                </p>
+            </ng-container>
+            <div class="description">
+                <label for="description">Description:</label>
+                <textarea name="description" rows="10" formControlName="description" id="description"
+                    type="text"></textarea>
+            </div>
+            <ng-container *ngIf="form.get('description')?.touched">
+                <p class="error" *ngIf="form.get('description')?.errors?.['required']">
+                    Description is required!
+                </p>
+                <p class="error" *ngIf="form.get('description')?.errors?.['minlength']">
+                    Description must be at least 10 characters!
+                </p>
+            </ng-container>
+
+            <div class="location">
+                <mat-label>Locations</mat-label>
+                <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="location"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let location of locations" [value]="location">
+                        {{location}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <ng-container *ngIf="form.get('location')?.touched">
+                <p class="error" *ngIf="form.get('location')?.errors?.['required']">
+                    Location is required!
+                </p>
+            </ng-container>
+            <div class="image">
+                <label for="image">Image:</label>
+                <input name="image" formControlName="img" id="image" type="text">
+            </div>
+            <ng-container *ngIf="form.get('img')?.touched">
+                <p class="error" *ngIf="form.get('img')?.errors?.['required']">
+                    Image is required!
+                </p>
+            </ng-container>
+            <button class="btn" [disabled]="form.invalid">Edit Fondation</button>
+        </div>
+    </form>
+</section>

@@ -17,7 +17,6 @@ export class CreateFondationComponent {
     description: ['', [Validators.required, Validators.minLength(10)]],
     location: ['', [Validators.required]],
     img: ['', [Validators.required]],
-
   });
 
   constructor(private fb: FormBuilder,private fondationService: FondationService, private router: Router) { }
