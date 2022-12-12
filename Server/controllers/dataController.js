@@ -19,7 +19,6 @@ async function getAllItems(req, res) {
 async function createFondation(req, res) {
     try {
         const data = Object.assign({ _ownerId: req.user._id }, req.body);
-        console.log(data);
         const item = await create(data);
         res.json(item);
     } catch (err) {
@@ -35,8 +34,8 @@ async function getFondation (req, res, next) {
 
 async function updateFondation (req, res, next) {
     const item = await getById(req.params.fondationId);
-    // console.log(req.user._id, item);
-    if (req.user._id != item._ownerId) {
+    console.log((req.user._id).str === (item._ownerId).str);
+    if ((req.user._id).str !== (item._ownerId).str) {
         return res.status(403).json({ message: 'You cannot modify this record' });
     }
 
@@ -51,7 +50,7 @@ async function updateFondation (req, res, next) {
 
 async function deleteFondation (req, res) {
     const item = await getById(req.params.fondationId);
-    if (req.user._id != item._ownerId) {
+    if ((req.user._id).str !== (item._ownerId).str) {
         return res.status(403).json({ message: 'You cannot modify this record' });
     }
 

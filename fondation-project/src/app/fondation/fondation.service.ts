@@ -32,7 +32,7 @@ export class FondationService {
   }
 
   createFondation(title: string, description: string, location: string, img: string) {
-    return this.http.post<IFondation>('/api/fondations/', { title, description, location, img})
+    return this.http.post<IFondation>('/api/fondations', { title, description, location, img})
     .pipe(tap(fondation => this.fondation$$.next(fondation)));
   }
 
