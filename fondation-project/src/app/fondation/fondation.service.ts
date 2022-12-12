@@ -26,6 +26,10 @@ export class FondationService {
     });
   }
 
+  loadFondations() {
+    return this.http.get<IFondation[]>(`api/fondations`);
+  }
+
   getFondation(id: string) {
     return this.http.get<IFondation>('/api/fondations/' + id)
     .pipe(tap(fondation => this.fondation$$.next(fondation)));

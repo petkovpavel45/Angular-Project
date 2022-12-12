@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
 import { IFondation } from 'src/app/shared/interfaces/fondation';
+import { FondationService } from '../fondation.service';
 
 @Component({
   selector: 'app-recent-fondations',
@@ -11,10 +11,10 @@ export class RecentFondationsComponent {
   fondations: IFondation[] | null = null;
 
   errorFetching = false;
-  constructor(private apiService: ApiService) {}
+  constructor(private fondationService: FondationService) {}
 
   ngOnInit(): void {
-    this.apiService.loadFondations().subscribe({
+    this.fondationService.loadFondations().subscribe({
       next: (value) => {
         this.fondations = value;
       },

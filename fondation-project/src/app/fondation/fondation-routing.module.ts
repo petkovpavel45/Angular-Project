@@ -3,7 +3,6 @@ import { CreateFondationComponent } from "./create-fondation/create-fondation.co
 import { EditFondationComponent } from "./edit-fondation/edit-fondation.component";
 import { FondationDetailComponent } from "./fondation-detail/fondation-detail.component";
 import { MainComponent } from "./main/main.component";
-import { FondationResolver } from "./resolvers/fondation.resolver";
 
 const routes: Routes = [
   {
@@ -16,16 +15,10 @@ const routes: Routes = [
   },
   {
     path: 'detail/:id',
-    // resolve: {
-    //   fondation: FondationResolver
-    // },
     component: FondationDetailComponent
   },
   {
     path: 'edit/:id',
-    // resolve: {
-    //   fondation: FondationResolver
-    // },
     component: EditFondationComponent
   }
 ];
