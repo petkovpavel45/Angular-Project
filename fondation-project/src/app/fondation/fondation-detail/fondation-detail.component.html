@@ -16,7 +16,7 @@
                 <div class="actionBtn">
                     <!-- Only for registered user and creator of the pets-->
                     <a *ngIf="isOwner" [routerLink]="['/fondation', 'edit', fondation?._id]" class="edit">Edit</a>
-                    <a *ngIf="isOwner" href="#" class="remove">Delete</a>
+                    <a *ngIf="isOwner" (click)="deleteHandler()" class="remove">Delete</a>
                     <!--(Bonus Part) Only for no creator and user-->
                     <a *ngIf="!isOwner" href="#" class="donate">Donate</a>
                 </div>
