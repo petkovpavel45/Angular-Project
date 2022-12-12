@@ -18,7 +18,7 @@ export class FondationDetailComponent {
     const fondationId = this.activatedRoute.snapshot.params?.['id'];
     this.fondationService.getFondation(fondationId).subscribe((fondation) => {
       this.fondation = fondation;
-      // this.router.navigate(['/fondation/recent'])
+
     });
   }
 }
