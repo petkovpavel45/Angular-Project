@@ -10,15 +10,18 @@
                 <h4>Location: {{fondation?.location}}</h4>
                 <h4 class="donation">Donation: 0$</h4>
             </div>
+
             <!-- if there is no registered user, do not display div-->
-            <div class="actionBtn">
-                
-                <!-- Only for registered user and creator of the pets-->
-                <a [routerLink]="['/fondation', 'edit', fondation?._id]" class="edit">Edit</a>
-                <a href="#" class="remove">Delete</a>
-                <!--(Bonus Part) Only for no creator and user-->
-                <a href="#" class="donate">Donate</a>
-            </div>
+            <ng-template #loggedTemplate>
+                <div class="actionBtn">
+                    <!-- Only for registered user and creator of the pets-->
+                    <a *ngIf="isOwner" [routerLink]="['/fondation', 'edit', fondation?._id]" class="edit">Edit</a>
+                    <a *ngIf="isOwner" href="#" class="remove">Delete</a>
+                    <!--(Bonus Part) Only for no creator and user-->
+                    <a *ngIf="!isOwner" href="#" class="donate">Donate</a>
+                </div>
+            </ng-template>
+            <ng-container *ngTemplateOutlet="!isNotLoggedIn ? loggedTemplate : null "></ng-container>
         </div>
     </div>
 </section>

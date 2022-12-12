@@ -7,10 +7,6 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements DoCheck {
-  // get isLoggedIn() {
-  //   return this.authService.isLoggedIn;
-  // }
-
   isLoggedIn = false;
 
   constructor(private authService: AuthService) {}

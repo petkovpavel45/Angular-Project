@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { IFondation } from 'src/app/shared/interfaces';
 import { FondationService } from '../fondation.service';
 
@@ -13,12 +14,19 @@ export class FondationDetailComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private fondationService: FondationService
+    private fondationService: FondationService,
+    private authService: AuthService
   ) {
     const fondationId = this.activatedRoute.snapshot.params?.['id'];
     this.fondationService.getFondation(fondationId).subscribe((fondation) => {
       this.fondation = fondation;
-
+      
     });
   }
+  get isNotLoggedIn () {
+    return this.authService.user?._id === undefined
+  }
+  get isOwner() {
+    return this.authService.user?._id === this.fondation?._ownerId;
+  } 
 }
