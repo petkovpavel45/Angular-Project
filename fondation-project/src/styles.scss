@@ -25,10 +25,12 @@ h6 {
     font-weight: 400;
 }
 
-#content {
-    margin: 3rem auto;
-    width: 92%;
-    min-height: calc(100vh - 13.4rem);
+html,
+body {
+    height: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

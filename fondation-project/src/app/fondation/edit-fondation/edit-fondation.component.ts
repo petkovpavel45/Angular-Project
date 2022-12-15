@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IFondation } from 'src/app/shared/interfaces';
 import { FondationService } from '../fondation.service';
 
 @Component({

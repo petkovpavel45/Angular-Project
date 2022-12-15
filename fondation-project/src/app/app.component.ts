@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivationStart, NavigationEnd, RouteConfigLoadEnd, Router, RoutesRecognized } from '@angular/router';
-import { filter, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,23 +7,5 @@ import { filter, map, tap } from 'rxjs';
 })
 export class AppComponent {
   title = 'fondation-project';
-
-  showMyClass = false;
-
-  constructor(
-    private router: Router,
-    private pageTitle: Title
-  ) {
-    this.router.events.pipe(
-      filter((e): e is ActivationStart => e instanceof ActivationStart),
-      map(e => e.snapshot.data?.['title']),
-      filter((d) => !!d)
-    ).subscribe((pageTitle) => {
-      this.pageTitle.setTitle(pageTitle);
-    });
-  }
-
-  toggleMyClass() {
-    this.showMyClass = !this.showMyClass;
-  }
+  constructor() {}
 }

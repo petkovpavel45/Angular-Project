@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, filter, Subscription, tap } from 'rxjs';
-import { IFondation, IUser } from '../shared/interfaces';
+import { IFondation} from '../shared/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,7 @@ export class FondationService  implements OnDestroy{
   );
 
   fondation: IFondation | null = null;
-
-  // get isOwner() {
-  //   return this.fondation !== null;
-  // }
-
+  
   subscription: Subscription;
 
   constructor(private http: HttpClient) {
