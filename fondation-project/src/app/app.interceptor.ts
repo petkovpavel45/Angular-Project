@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Inject, Injectable, Provider } from "@angular/core";
 import { Router } from "@angular/router";
-import { BehaviorSubject, catchError, combineLatest, map, Observable, of, switchMap, take, throwError, withLatestFrom, zip } from "rxjs";
+import { BehaviorSubject, catchError, Observable, of, switchMap, take, throwError, zip } from "rxjs";
 import { environment } from '../environments/environment';
 import { AuthService } from "./auth/auth.service";
 import { API_ERROR } from "./shared/constants";

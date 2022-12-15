@@ -11,7 +11,8 @@ export class RecentFondationsComponent {
   fondations: IFondation[] | null = null;
 
   errorFetching = false;
-  constructor(private fondationService: FondationService) {}
+  constructor(
+    private fondationService: FondationService) {}
 
   ngOnInit(): void {
     this.fondationService.loadFondations().subscribe({

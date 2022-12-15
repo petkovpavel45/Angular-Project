@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, catchError, filter, of, Subscription, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, filter, Subscription, tap, throwError } from 'rxjs';
 import { IUser } from '../shared/interfaces';
 
 @Injectable({

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { MainComponent } from './main/main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecentFondationsComponent } from './recent-fondations/recent-fondations.component';
 import { CreateFondationComponent } from './create-fondation/create-fondation.component';
@@ -16,7 +15,6 @@ import { EditFondationComponent } from './edit-fondation/edit-fondation.componen
   declarations: [
     RecentFondationsComponent,
     CreateFondationComponent,
-    MainComponent,
     FondationDetailComponent,
     EditFondationComponent,
   ],

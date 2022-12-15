@@ -10,8 +10,8 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     canActivate: [AuthActivate],
+    title: 'Login',
     data: {
-      title: 'Login',
       loginRequired: false
     }
   },
@@ -19,8 +19,8 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
     canActivate: [AuthActivate],
+    title: 'Register',
     data: {
-      title: 'Register',
       loginRequired: false
     }
   },
@@ -28,8 +28,8 @@ const routes: Routes = [
     path: 'logout',
     component: LogoutComponent,
     canActivate: [AuthActivate],
+    title: 'Logout',
     data: {
-      title: 'Logout',
       loginRequired: true
     }
   },
@@ -37,8 +37,8 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthActivate],
+    title: 'My Profile',
     data: {
-      title: 'Profile',
       loginRequired: true
     }
   }
