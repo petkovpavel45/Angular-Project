@@ -40,6 +40,12 @@ const userSchema = new mongoose.Schema(
           `${props.value} must contains only latin letters and digits!`,
       },
     },
+    donations: [
+      {
+         type: ObjectId, 
+         ref: 'Fondation'
+      }
+    ],
   },
   { timestamps: { createdAt: "created_at" } }
 );
@@ -68,5 +74,6 @@ userSchema.pre("save", function (next) {
   }
   next();
 });
+const User = mongoose.model("User", userSchema)
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = User;

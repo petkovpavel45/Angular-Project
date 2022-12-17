@@ -1,4 +1,6 @@
 const Fondation = require("../models/Fondation");
+const User = require("../models/User");
+
 
 async function getAll() {
   return Fondation.find({});
@@ -31,6 +33,10 @@ async function deleteById(id) {
   return Fondation.findByIdAndDelete(id);
 }
 
+async function donate(fondationId, userId) {
+  return User.updateOne({ _id: userId }, { $addToSet: { donations: fondationId } })
+}
+
 module.exports = {
   getAll,
   getByUserId,
@@ -38,4 +44,5 @@ module.exports = {
   create,
   update,
   deleteById,
+  donate
 };

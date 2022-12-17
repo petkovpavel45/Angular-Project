@@ -1,7 +1,7 @@
 const dataController = require('express').Router();
 
 // const { hasUser } = require('../middlewares/guards');
-const { getAll, create, getById, update, deleteById, getByUserId } = require('../services/itemService');
+const { getAll, create, getById, update, deleteById, getByUserId, donate } = require('../services/itemService');
 const { parseError } = require('../utils/parser');
 
 
@@ -34,8 +34,7 @@ async function getFondation (req, res, next) {
 
 async function updateFondation (req, res, next) {
     const item = await getById(req.params.fondationId);
-    console.log((req.user._id).str === (item._ownerId).str);
-    if ((req.user._id).str !== (item._ownerId).str) {
+    if ((req.user._id).toString() !== (item._ownerId).toString()) {
         return res.status(403).json({ message: 'You cannot modify this record' });
     }
 
@@ -50,7 +49,7 @@ async function updateFondation (req, res, next) {
 
 async function deleteFondation (req, res) {
     const item = await getById(req.params.fondationId);
-    if ((req.user._id).str !== (item._ownerId).str) {
+    if ((req.user._id).toString() !== (item._ownerId).toString()) {
         return res.status(403).json({ message: 'You cannot modify this record' });
     }
 
@@ -63,10 +62,28 @@ async function deleteFondation (req, res) {
     }
 };
 
+async function addDonation(req, res) {
+    const item = await getById(req.params.fondationId);
+    if ((req.user._id).toString() === (item._ownerId).toString()) {
+        return res.status(403).json({ message: 'You cannot donate in this fondation' });
+    }
+    if (req.user.donations.find((id) => id.toString() === (req.params.fondationId).toString())) {
+        return res.status(403).json({ message: 'You cannot donate again' });
+    }
+    try {
+        const result = await donate(req.params.fondationId, req.user._id);
+        res.status(200).json(result);
+    } catch (err) {
+        const message = parseError(err);
+        res.status(400).json({ message });
+    }
+}
+
 module.exports = {
     getAllItems,
     createFondation,
     getFondation,
     updateFondation,
-    deleteFondation
+    deleteFondation,
+    addDonation
 }
