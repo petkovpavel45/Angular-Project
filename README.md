@@ -370,3 +370,54 @@ Content:
     message: "Something went wrong!"
 }
 ```
+
+# Endpoints: Donations
+
+- `/donations/:fondationId`
+
+
+## Make Donation
+
+Make donation to the fondation.
+
+### URL --> `/donations/:fondationId`
+
+### Method --> `PUT`
+
+### Body -->
+
+```
+{
+    "fondationId": "639a112eb626a1085a323c26",
+    "userId": "639a0a29b626a1085a323c1c",
+}
+```
+
+### Error Response:
+
+Code: 403 Forbidden
+Content:
+
+```
+{
+    message: "You cannot donate in this fondation!"
+}
+```
+
+Code: 403 Internal Server Error
+Content:
+
+```
+{
+    message: "You cannot donate again!"
+}
+```
+
+Code: 400 Bad Request
+Content:
+
+```
+{
+    message: "Something went wrong!"
+}
+```

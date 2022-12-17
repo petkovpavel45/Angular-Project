@@ -31,9 +31,19 @@ export class FondationDetailComponent {
     return this.authService.user?._id === this.fondation?._ownerId;
   }
 
+  get isDonated() {
+    return this.authService.user?.donations.find((id) => id.toString() === (this.fondationId).toString())
+  }
+
   deleteHandler() {
     this.fondationService.deleteFondation(this.fondationId).subscribe(() => {
       this.router.navigate(['/fondation/recent']);
     });
+  }
+
+  donateHandler() {
+    this.fondationService.makeDonate(this.fondationId,(this.authService.user?._id) as any).subscribe(() => {
+      this.router.navigate(['/fondation/recent'])
+    })
   }
 }
