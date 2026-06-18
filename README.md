@@ -1,423 +1,78 @@
-# Angular-Project - Fondation-Project
+# Fondation — Full-stack Angular App
 
-## Base URL
+A full-stack CRUD platform for managing charitable foundations, built with Angular and MongoDB.
 
-The Base URL is the root URL for all of the API, if you ever make a request to the API and you get back a 404 NOT FOUND response then check the Base URL first.
-The Base URL for the API is:
-`https://localhost:3000/api`
-The documentation below assumes you are prepending the Base URL to the endpoints in order to make requests.
+---
 
-# Endpoints: Users
+## Features
 
-- `/users/register` -- signing up;
-- `/users/login` -- signing in;
-- `/users/logout` -- logging out;
+- **Browse foundations** — view all listed foundations with details
+- **Create & manage** — authenticated users can create, edit, and delete foundations
+- **Donations** — make donations to any foundation (once per user)
+- **Authentication** — register/login with JWT-based session management
+- **Route guards** — protected routes for authenticated users only
+- **Ownership** — only the creator can edit or delete their foundation
 
-## Register User
+## Tech Stack
 
-Signs up user and returns the registered data as json.
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
 
-### URL --> `/users/register`
+**Frontend:** Angular, TypeScript, HTML5, CSS3  
+**Backend:** Node.js, Express  
+**Database:** MongoDB  
+**Auth:** JWT tokens
 
-### Method --> `POST`
+## Getting Started
 
-### Body -->
+### Frontend
 
-```
-{
-    "email":"test@abv.bg",
-    "username":"test45",
-    "tel": "+3598654781"
-    "password":"12345",
-    "rePassword":"12345"
-}
-```
-
-Required:
-`email` : [string] -- The email of the person is required and must be valid email;
-`username` : [string] -- The username of the person is required and must be unique, also there is a minimum length of 5 chars, allowed are latin letters and numbers;
-`tel` : [string] -- The phone number of the person is required and must be minimum length of 10 digits;
-`password` : [string] -- The password of the person is required and there is a minimum length of 5 chars, allowed are latin letters and numbers;
-
-### Success Response:
-
-Code: 200
-Content:
-
-```
-{
-"_id" : "639a0a29b626a1085a323c1c"
-"email" : "test@abv.bg"
-"username" : "test45"
-"tel" : "+35987654254"
-"created_at" : "2022-12-14T17:38:49.568+00:00"
-"updatedAt" : "2022-12-14T17:38:49.568+00:00"
-}
+```bash
+cd fondation-project
+npm install
+ng serve
 ```
 
-### Error Response:
+Opens at `http://localhost:4200`
 
-Code: 409 CONFLICT
-Content:
+### Backend
 
-```
-{
-    "message": "This email/username is already registered!"
-}
-```
-
-## Login User
-
-Signs in user and returns the registered data as json.
-
-### URL --> `/users/login`
-
-### Method --> `POST`
-
-### Body -->
-
-```
-{
-    "username":"test45",
-    "password":"12345"
-}
+```bash
+cd Server
+npm install
+node index.js
 ```
 
-Required:
-`username` : [string] -- The username of the person
-`password` : [string] -- The password of the person
+API runs at `http://localhost:3000/api`
 
-### Success Response:
+## API Endpoints
 
-Code: 200
-Content:
+### Auth
 
-```
-{
-    "_id" : "639a0a29b626a1085a323c1c"
-    "email" : "test@abv.bg"
-    "username" : "test45"
-    "tel" : "+35987654254"
-    "created_at" : "2022-12-14T17:38:49.568+00:00"
-    "updatedAt" : "2022-12-14T17:38:49.568+00:00"
-}
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/users/register` | Register new user |
+| POST | `/users/login` | Login |
+| POST | `/users/logout` | Logout |
 
-### Error Response:
+### Foundations
 
-Code: 401 Unauthorized
-Content:
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/fondations` | Get all foundations |
+| POST | `/fondations` | Create foundation (auth required) |
+| GET | `/fondations/:id` | Get foundation details |
+| PUT | `/fondations/:id` | Edit foundation (owner only) |
+| DELETE | `/fondations/:id` | Delete foundation (owner only) |
 
-```
-{
-    "message": "Wrong username or password"
-}
-```
+### Donations
 
-## Logout User
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| PUT | `/donations/:fondationId` | Donate to a foundation (once per user) |
 
-Logout user.
+## License
 
-### URL --> `/users/logout`
-
-### Method --> `POST`
-
-### Success Response:
-
-Code: 401 Unauthorized
-Content:
-
-```
-{
-    "message": "Logged out!"
-}
-```
-
-# Endpoints: Fondations
-
-- `/fondations`
-- `/fondations/:fondationId`
-
-## Get Fondation
-
-Returns all fondations as json.
-
-### URL --> `/fondations`
-
-### Method --> `GET`
-
-### Success Response:
-
-Code: 200
-Content:
-
-```
-[
-    {
-        "_id": "639a112eb626a1085a323c26",
-        "title": "Kids fondation",
-        "description": "They need food- like pizza",
-        "location": "Varna",
-        "img": "https://hext.to/wp-content/uploads/2018/12/shutterstock_1181290198-Converted-1920.jpg",
-        "_ownerId": 639a0a29b626a1085a323c1c,
-        "created_at" : "2022-12-14T18:08:46.136+00:00",
-        "updatedAt" : "2022-12-14T18:08:46.136+00:00"
-    }
-]
-```
-
-### Error Response:
-
-Code: 500 Internal Server Error
-Content:
-
-```
-{
-    message: "Something went wrong!"
-}
-```
-
-## Post Fondation
-
-Creates new Fondation and returns the fondation as json.
-
-### URL --> `/fondations`
-
-### Method --> `POST`
-
-### Body -->
-
-```
-{
-    "title": "some title",
-    "description": "Some description",
-    "location": "Varna",
-    "image": "url for image"
-}
-```
-
-Required:
-`title` : [string] -- The Title of your new Fondation, which you want to create
-`description` : [string] -- The description of your Fondation.
-`locations` : [string] -- The location that is located the fondation. Must be Varna, Plovdiv, Sofia
-`image` : [string] -- The image of your fondation
-
-### Success Response:
-
-Code: 200
-Content:
-
-```
-{
-    "_id": "639a112eb626a1085a323c26",
-    "title": "Kids fondation",
-    "description": "They need food- like pizza",
-    "location": "Varna",
-    "img": "https://hext.to/wp-content/uploads/2018/12/shutterstock_1181290198-Converted-1920.jpg",
-    "_ownerId": 639a0a29b626a1085a323c1c,
-    "created_at" : "2022-12-14T18:08:46.136+00:00",
-    "updatedAt" : "2022-12-14T18:08:46.136+00:00"
- }
-```
-
-### Error Response:
-
-Code: 500 Internal Server Error
-Content:
-
-```
-{
-    message: "Something went wrong!"
-}
-```
-
-## Detail Fondation
-
-Get detail of the fondation you select as a json
-
-### URL --> `/fondation/:fondationId`
-
-### Method --> `GET`
-
-### Success Response:
-
-Code: 200
-Content:
-
-```
-{
-    "_id": "639a112eb626a1085a323c26",
-    "title": "Kids fondation",
-    "description": "They need food- like pizza",
-    "location": "Varna",
-    "img": "https://hext.to/wp-content/uploads/2018/12/shutterstock_1181290198-Converted-1920.jpg",
-    "_ownerId": 639a0a29b626a1085a323c1c,
-    "created_at" : "2022-12-14T18:08:46.136+00:00",
-    "updatedAt" : "2022-12-14T18:08:46.136+00:00"
- }
-```
-
-### Error Response:
-
-Code: 500 Internal Server Error
-Content:
-
-```
-{
-    message: "Something went wrong!"
-}
-```
-
-## Edit Fondation
-
-Edit Fondation if the user is the author of the fondation and returns the changed fondation.
-
-### URL --> `/fondations/:fondationId`
-
-### Method --> `PUT`
-
-### Body -->
-
-```
-{
-    "title": "Kids fondation",
-    "description": "They need food- like pizza",
-    "location": "Varna",
-    "img": "https://hext.to/wp-content/uploads/2018/12/shutterstock_1181290198-Converted-1920.jpg"
-}
-```
-
-### Success Response:
-
-Code: 200
-Content:
-
-```
-{
-    "_id": "639a112eb626a1085a323c26",
-    "title": "Kids fondation",
-    "description": "They need food- like pizza",
-    "location": "Varna",
-    "img": "https://hext.to/wp-content/uploads/2018/12/shutterstock_1181290198-Converted-1920.jpg",
-    "_ownerId": 639a0a29b626a1085a323c1c,
-    "created_at" : "2022-12-14T18:08:46.136+00:00",
-    "updatedAt" : "2022-12-14T18:08:46.136+00:00"
- }
-```
-
-### Error Response:
-
-Code: 401 Unauthorized
-Content:
-
-```
-{
-    message: "Not allowed!"
-}
-```
-
-Code: 500 Internal Server Error
-Content:
-
-```
-{
-    message: "Something went wrong!"
-}
-```
-
-## Delete Fondation
-
-Deletes Fondation if the user is the author of the fondation and returns the deleted fondation.
-
-### URL --> `/fondations/:fondationId`
-
-### Method --> `DELETE`
-
-### Success Response:
-
-Code: 200
-Content:
-
-```
-{
-    "_id": "639a112eb626a1085a323c26",
-    "title": "Kids fondation",
-    "description": "They need food- like pizza",
-    "location": "Varna",
-    "img": "https://hext.to/wp-content/uploads/2018/12/shutterstock_1181290198-Converted-1920.jpg",
-    "_ownerId": 639a0a29b626a1085a323c1c,
-    "created_at" : "2022-12-14T18:08:46.136+00:00",
-    "updatedAt" : "2022-12-14T18:08:46.136+00:00"
- }
-```
-
-### Error Response:
-
-Code: 401 Unauthorized
-Content:
-
-```
-{
-    message: "Not allowed!"
-}
-```
-
-Code: 500 Internal Server Error
-Content:
-
-```
-{
-    message: "Something went wrong!"
-}
-```
-
-# Endpoints: Donations
-
-- `/donations/:fondationId`
-
-
-## Make Donation
-
-Make donation to the fondation.
-
-### URL --> `/donations/:fondationId`
-
-### Method --> `PUT`
-
-### Body -->
-
-```
-{
-    "fondationId": "639a112eb626a1085a323c26",
-    "userId": "639a0a29b626a1085a323c1c",
-}
-```
-
-### Error Response:
-
-Code: 403 Forbidden
-Content:
-
-```
-{
-    message: "You cannot donate in this fondation!"
-}
-```
-
-Code: 403 Internal Server Error
-Content:
-
-```
-{
-    message: "You cannot donate again!"
-}
-```
-
-Code: 400 Bad Request
-Content:
-
-```
-{
-    message: "Something went wrong!"
-}
-```
+MIT
